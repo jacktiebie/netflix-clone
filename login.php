@@ -16,7 +16,7 @@
             <div class="column">
 
                 <div class="header">
-                    <img src="assets/images/logo.png" title="Logo" alt="Site logo" />
+                    <img src="https://fontmeme.com/permalink/211112/2fefd85d65936456ca7740f4e60cbcf0.png" title="Logo" alt="Site logo" />
                     <h3>Sign In</h3>
                     <span>to continue to Netflix</span>
                 </div>
