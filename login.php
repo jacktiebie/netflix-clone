@@ -1,12 +1,34 @@
 <?php
+require_once("includes/config.php");
+require_once("includes/classes/FormSanitizer.php");
+require_once("includes/classes/Constants.php");
+require_once("includes/classes/Account.php");
+
+$account = new Account($con);
+
     if(isset($_POST["submitButton"])) {
-        echo "Form was submitted";
+
+        $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
+        
+        $success = $account->login($username, $password);
+
+        if($success) {
+            $_SESSION["userLoggedIn"] = $username;
+            header("Location: index.php");
+        }
     }
+
+function getInputValue($name) {
+    if(isset($_POST[$name])) {
+        echo $_POST[$name];
+    }
+}  
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Welcome to Netflix</title>
+        <title>Welcome to Reeceflix</title>
         <link rel="stylesheet" type="text/css" href="assets/style/style.css" />
     </head>
     <body>
@@ -16,14 +38,14 @@
             <div class="column">
 
                 <div class="header">
-                    <img src="https://fontmeme.com/permalink/211112/2fefd85d65936456ca7740f4e60cbcf0.png" title="Logo" alt="Site logo" />
+                    <img src="assets/images/logo.png" title="Logo" alt="Site logo" />
                     <h3>Sign In</h3>
-                    <span>to continue to Netflix</span>
+                    <span>to continue to Reeceflix</span>
                 </div>
 
                 <form method="POST">
-
-                    <input type="text" name="username" placeholder="Username" required>
+                    <?php echo $account->getError(Constants::$loginFailed); ?>
+                    <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username"); ?>" required>
 
                     <input type="password" name="password" placeholder="Password" required>
 
