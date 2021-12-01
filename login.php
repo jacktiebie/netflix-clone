@@ -1,4 +1,8 @@
-
+<?php
+    if(isset($_POST["submitButton"])) {
+        echo "Form was submitted";
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,8 +22,8 @@
                 </div>
 
                 <form method="POST">
-                   
-                    <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username"); ?>" required>
+
+                    <input type="text" name="username" placeholder="Username" required>
 
                     <input type="password" name="password" placeholder="Password" required>
 
