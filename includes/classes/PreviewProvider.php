@@ -9,7 +9,7 @@ class PreviewProvider {
     }
 
     public function createPreviewVideo() {
-        echo "hello";
+        
     }
 
 }
